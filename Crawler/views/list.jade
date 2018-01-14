@@ -1,0 +1,54 @@
+doctype html
+html
+    head
+        title= title
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        meta(name="viewport",content="width=device-width, initial-scale=1")
+        link(rel='stylesheet', href='http://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css')
+        script(src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js")
+        script(src="http://cdn.bootcss.com/bootstrap/3.2.0/js/bootstrap.min.js")
+  body
+      block content
+    h1= title
+
+    div
+        ul.sync-pagination.pagination-sm
+
+    each item,i in items
+        - if (item.type)
+            h5
+                button.btn.btn-success.btn-xs [#{item.type}]
+                    span.label.label-success #{i+1}
+                a(href="#{item.link}" target="_blank" ) 　#{item.title}
+        - else
+            h5
+                button.btn.btn-info.btn-xs [未知]
+                    span.label.label-info #{i+1}
+                a(href="#{item.link}" target="_blank" ) 　#{item.title}
+
+    ul.sync-pagination.pagination-sm
+    div.jumbotron
+        h1 关于
+        p  .CNode 社区为国内最专业的 Node.js 开源技术社区，致力于 Node.js 的技术研究。
+        p  .CNode 社区由一批热爱 Node.js 技术的工程师发起，目前已经吸引了互联网各个公司的专业技术人员加入，我们非常欢迎更多对 Node.js 感兴趣的朋友。
+        p  .CNode 的 SLA 保证是，一个9，即 90.000000%。
+        p  .社区目前由 @alsotang 在维护，有问题请联系：https://github.com/alsotang
+        p  .请关注我们的官方微博：http://weibo.com/cnodejs
+        <p><a class="btn btn-primary btn-lg" href="https://cnodejs.org" role="button" target="_blank">原站链接</a></p>
+    //http://esimakin.github.io/twbs-pagination/
+    script(src="/javascripts/jquery.twbsPagination.min.js")
+    script.
+      $(document).ready(function () {
+                     $('.sync-pagination').twbsPagination({
+                         totalPages: #{items.totalPages},
+                         visiblePages: 7,
+                         first:'首页',
+                         last:'末页',
+                         prev:'上一页',
+                         next:'下一页',
+                         href:'?tab=all&page={{number}}',
+                         onPageClick: function (evt, page) {
+                             $('#sync-example-page-content').text('Page ' + page);
+                         }
+                     });
+                 });
