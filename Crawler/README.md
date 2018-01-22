@@ -4,9 +4,9 @@
 
 开发模式下,启动本地服务.修改文件。
 ```js
-1 cd 进入目录
-2 npm i || cnpm i
-3 npm start  
+- cd 进入目录
+- npm i || cnpm i
+- npm start  
 ```
 
 ## 具备功能
