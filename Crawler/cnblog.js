@@ -1,6 +1,3 @@
-/**
- * Created by Administrator on 2015/11/17.
- */
 var superagent= require('superagent');
 var cheerio= require('cheerio');
 var url = require('url');
