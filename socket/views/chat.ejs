@@ -1,0 +1,40 @@
+<style>
+	.caozuo{
+		position:fixed;
+		bottom:0;
+		left:0;
+		height:100px;
+		background:#ccc;
+		width:100%;
+	}
+	.caozuo input{
+		font-size:30px;
+	}
+	.caozuo input[type=text]{
+		width:100%;
+	}
+</style>
+<h1>聊天室<span id="yonghu"><%=yonghuming%></span></h1>
+
+<div>
+	<ul class="liebiao"></ul>
+</div>
+<div class="caozuo">
+	<input type="text" id="neirong" />
+	<input type="button" id="fayan" value="发言" />
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+	var socket = io();
+	var liebiao = document.querySelector(".liebiao");
+	fayan.onclick = function(){
+		//把文本框的内容上传。
+		socket.emit("liaotian",{
+			"neirong":neirong.value,
+			"ren":yonghu.innerHTML
+		});
+	}
+	socket.on("liaotian",function(msg){
+		liebiao.innerHTML="<li>"+msg.ren+"说:<span>"+msg.neirong+"</span></li>"+liebiao.innerHTML;
+	})
+</script>
