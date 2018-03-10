@@ -1,11 +1,17 @@
 const Koa = require('koa')
 const app = new Koa()
 const logger = require('koa-logger')
-const normal = require('./tpl/normal');
+const views = require('koa-views')
+const { resolve } = require('path')
 app.use(logger())
+app.use(views(resolve(__dirname,'./views'),{
+	extension:'pug'
+}))
 app.use(async (ctx,next)=>{
-	ctx.type="text/html; charset=utf-8"
-	ctx.body=normal
+	await ctx.render('index',{
+		you:'haha',
+		me:'gaga'
+	})
 })
 
 app.listen(3001)
